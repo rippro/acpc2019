@@ -1,4 +1,4 @@
-#define MIN_A 1
-#define MAX_A 1000
-#define MIN_B 1
-#define MAX_B 1000
+#define MIN_N 2
+#define MAX_N 300
+#define MIN_M 1
+#define MAX_M N*(N-1)
