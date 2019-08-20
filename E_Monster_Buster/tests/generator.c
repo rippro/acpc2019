@@ -18,27 +18,81 @@ void out(int n,char *s){
   for(i=0;i<n;i++)fprintf(f,"%d %d %d %d\n",d[i][0],d[i][1],d[i][2],d[i][3]);
   fclose(f);
 }
-void MakeNum(int n){
-  int i;
-  for(i=0;i<n;i++){
-    d[i][0]=rnd.next(MIN_R,MAX_R);
-    d[i][1]=rnd.next(MIN_A,MAX_A);
-    d[i][2]=rnd.next(MIN_W,MAX_W);
-    d[i][3]=rnd.next(MIN_T,MAX_T);
-  }
-}
 int main(){
-  int n,i;
+  int n,i,j;
   char s[100];
   rnd.setSeed(time(0)+getpid());
 
-  for(i=0;i<100;i++){
+  for(i=0;i<10;i++){
     n=rnd.next(MIN_N,8);
-    sprintf(s,"50_random_small_%02d.in",i);
-    MakeNum(n);
+    sprintf(s,"50_small_%02d.in",i);
+    for(j=0;j<n;j++){
+      d[j][0]=rnd.next(MIN_R,20);
+      d[j][1]=rnd.next(0,20);
+      d[j][2]=rnd.next(0,20);
+      d[j][3]=rnd.next(MIN_T,20);
+    }
+    out(n,s);
+  }
+  for(i=0;i<10;i++){
+    n=rnd.next(MIN_N,MAX_N);
+    sprintf(s,"51_large_%02d.in",i);
+    for(j=0;j<n;j++){
+      d[j][0]=rnd.next(MIN_R,MAX_R);
+      d[j][1]=rnd.next(MIN_A,MAX_A);
+      d[j][2]=rnd.next(MIN_W,MAX_W);
+      d[j][3]=rnd.next(MIN_T,MAX_T);
+    }
+    out(n,s);
+  }
+  for(i=0;i<10;i++){
+    n=rnd.next(MIN_N,MIN_N);
+    sprintf(s,"52_min_%02d.in",i);
+    for(j=0;j<n;j++){
+      d[j][0]=rnd.next(MIN_R,MAX_R);
+      d[j][1]=rnd.next(MIN_A,MAX_A);
+      d[j][2]=rnd.next(MIN_W,MAX_W);
+      d[j][3]=rnd.next(MIN_T,MAX_T);
+    }
+    out(n,s);
+  }
+  for(i=0;i<10;i++){
+    n=rnd.next(MAX_N,MAX_N);
+    sprintf(s,"53_max_%02d.in",i);
+    for(j=0;j<n;j++){
+      d[j][0]=rnd.next(MIN_R,MAX_R);
+      d[j][1]=rnd.next(MIN_A,MAX_A);
+      d[j][2]=rnd.next(MIN_W,MAX_W);
+      d[j][3]=rnd.next(MIN_T,MAX_T);
+    }
+    out(n,s);
+  }
+
+  //rが小さくtが大きい（たくさん演奏できる）
+  //54:小さいケース
+  //55:大きいケース
+  for(i=0;i<10;i++){
+    n=rnd.next(MIN_N,8);
+    sprintf(s,"54_Tlarge_small_%02d.in",i);
+    for(j=0;j<n;j++){
+      d[j][0]=rnd.next(MIN_R,20);
+      d[j][1]=rnd.next(0,20);
+      d[j][2]=rnd.next(0,20);
+      d[j][3]=rnd.next(30,MAX_T);
+    }
+    out(n,s);
+  }
+  for(i=0;i<10;i++){
+    n=rnd.next(MIN_N,MAX_N);
+    sprintf(s,"55_Tlarge_large_%02d.in",i);
+    for(j=0;j<n;j++){
+      d[j][0]=rnd.next(MIN_R,20);
+      d[j][1]=rnd.next(MIN_A,MAX_A);
+      d[j][2]=rnd.next(MIN_W,MAX_W);
+      d[j][3]=rnd.next(MAX_T/2,MAX_T);
+    }
     out(n,s);
   }
 
   return 0;
 }
-
