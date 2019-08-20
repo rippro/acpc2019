@@ -2,44 +2,77 @@
 #include <utility>
 #include "./testlib.h"
 #include "./constraints.hpp"
+#include <iomanip>
 #include <sys/types.h>
 #include <unistd.h>
-
+#include <set>
 using namespace std;
 
 #define rep(i,n) for(int i=0;i<(int)(n);i++)
 
-// aとbをファイルストリームに出力する
 // ファイル名は prefix_num.in (ex: 00_sample_00.in)
-void output(int a, int b, const string &prefix, int num){
-    char name[100];
-    sprintf(name, "%s_%02d.in", prefix.c_str(), num);
-    ofstream ofs(name);
-    ofs << a << " " << b << endl;
-    ofs.close();
+
+void output(const int N, const int M, const string &prefix,
+            const int num = 0) {
+  ostringstream os;
+  os << prefix << '_' << setw(2) << setfill('0') << num << ".in";
+  ofstream ofs(os.str());
+  ofs << N << ' '<< M << '\n';
+  set<pair<int,int>> st;
+  rep(i, M) {
+    int a, b;
+    while(1){
+      a = rnd.next(1, N);
+      b = rnd.next(1, N);
+      if(a != b && !st.count(make_pair(a,b))){
+        st.insert(make_pair(a,b));
+        break;
+      }
+    }
+    ofs << a << ' '<< b << "\n";
+  }
+  ofs.close();
+}
+
+void case_50_small() {
+  rep(num, 10) {
+    int N = rnd.next(MIN_N, 10);
+    int M = rnd.next(MIN_M,MAX_M);
+    output(N, M, "50_small", num);
+  }
+}
+
+void case_51_large() {
+  rep(num, 10) {
+    int N = rnd.next(MIN_N, MAX_N);
+    int M = rnd.next(MIN_M,MAX_M);
+    output(N, M, "51_large", num);
+  }
+}
+
+void case_52_Nmin() {
+  rep(num, 10) {
+    int N = MIN_N;
+    int M = N*(N-1);
+    output(N, M, "52_Nmin", num);
+  }
+}
+
+void case_53_Nmax() {
+  rep(num, 10) {
+    int N = MAX_N;
+    int M = rnd.next(MIN_M,MAX_M);
+    output(N, M, "53_Nmax", num);
+  }
 }
 
 int main(){
-    // 乱数のシードを設定
-    // pidを足すことで、1秒以上間を置かずに起動したときに同じシードになってしまうのを防ぐ
-    rnd.setSeed(time(0)+getpid());
+    rnd.setSeed(time(nullptr)+getpid());
 
-    // 乱数ケースを10個生成
-    for(int i = 0; i < 10; ++i){
-        int A = rnd.next(MIN_A, MAX_A);
-        int B = rnd.next(MIN_B, MAX_B);
-        output(A, B, "50_random", i);
-    }
+    case_50_small();
+    case_51_large();
+    case_52_Nmin(); //これ全部一緒だけどいるのか？
+    case_53_Nmax();
 
-    // 片方が大きいケースを生成
-    for(int i = 0; i < 10; ++i){
-        int A = 1;
-        int B = 1;
-        while(0.5*A <= B && B <= 1.5*A){
-            A = rnd.next(MIN_A, MAX_A);
-            B = rnd.next(MIN_B, MAX_B);
-        }
-        if(rnd.next(0,1)) swap(A, B);
-        output(A, B, "60_unbalance", i);
-    }
+
 }
