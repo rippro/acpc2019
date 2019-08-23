@@ -9,7 +9,7 @@ int main(){
     int N = inf.readInt(MIN_N, MAX_N);
     inf.readEoln();
     string s = inf.readString();
-    inf.readEoln();
+    //inf.readEoln();
     for (int i = 0; i < N; i++){
         bool flag = false;
         for(char c = 'a'; c <= 'z'; c++) if(s[i] == c) flag = true;
