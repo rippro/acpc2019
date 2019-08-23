@@ -26,7 +26,7 @@ void output(int N, const string &prefix, int i){
     ofs << endl;
     ofs.close();
 }
-
+/*
 void output2(int N, const string &prefix, int i){
     char name[100];
     //rep回すのめんどくさかったんで
@@ -41,7 +41,7 @@ void output2(int N, const string &prefix, int i){
     }
     ofs << endl;
     ofs.close();
-}
+}*/
 
 
 /*
@@ -51,6 +51,7 @@ void output2(int N, const string &prefix, int i){
 　←←←
 これ以外になるときansmax
 */
+/*
 void output3(int N, const string &prefix, int i){
     char name[100];
     //rep回すのめんどくさかったんで
@@ -65,7 +66,7 @@ void output3(int N, const string &prefix, int i){
     }
     ofs << endl;
     ofs.close();
-}
+}*/
 
 void case_50_small(){
     for(size_t i = 0; i < 10; ++i){
@@ -81,19 +82,19 @@ void case_51_large(){
     }
 }
 
-void case_52_ansmin(){
+void case_52_nmin(){
     //10 testcases.
     for(size_t i = 0; i < 10; ++i){
-        int strlengrh = rnd.next(MIN_N, MAX_N);
-        output2(strlengrh, "52_ansmin", i);
+        int strlengrh = MIN_N;
+        output(strlengrh, "52_nmin", i);
     }
 }
 
-void case_53_ansmax(){
+void case_53_nmax(){
     //10 testcases.
     for(size_t i = 0; i < 10; ++i){
-        int strlengrh = rnd.next(MIN_N, MAX_N);
-        output3(strlengrh, "53_ansmax", i);
+        int strlengrh = MAX_N;
+        output(strlengrh, "53_nmax", i);
     }
 }
 
@@ -104,8 +105,8 @@ int main(){
 
     case_50_small();
     case_51_large();
-    case_52_ansmin();
-    case_53_ansmax();
+    case_52_nmin();
+    case_53_nmax();
 }
 /*
     // 乱数ケースを10個生成
