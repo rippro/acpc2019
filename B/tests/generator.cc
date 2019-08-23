@@ -73,7 +73,7 @@ void case_50_small(){
 
 void case_51_large(){
     for(size_t i = 0; i < 10; ++i){
-        int strlengrh = rnd.next(1, 100'000);
+        int strlengrh = rnd.next(1, 100000);
         output(strlengrh, "51_large", i);
     }
 }
@@ -81,7 +81,7 @@ void case_51_large(){
 void case_52_ansmin(){
     //10 testcases.
     for(size_t i = 0; i < 10; ++i){
-        int strlengrh = rnd.next(1, 100'000);
+        int strlengrh = rnd.next(1, 100000);
         output2(strlengrh, "52_ansmin", i);
     }
 }
@@ -89,7 +89,7 @@ void case_52_ansmin(){
 void case_53_ansmax(){
     //10 testcases.
     for(size_t i = 0; i < 10; ++i){
-        int strlengrh = rnd.next(1, 100'000);
+        int strlengrh = rnd.next(1, 100000);
         output3(strlengrh, "53_ansmax", i);
     }
 }
