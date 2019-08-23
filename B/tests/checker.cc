@@ -11,13 +11,13 @@ using namespace std;
 // - AOJでは何も出力せずに正常終了するとAC、何か出力して正常終了するとWA
 //   (異常終了してはいけない)
 // - Rimeでは正常終了するとAC、異常終了するとWA
-// 
+//
 // これを切り替えるため、Rimeでテストするときには #define RIME する
 // ソースコードに埋め込むと都合が悪いので、コンパイルオプションに設定する
 // g++ checker -D RIME
 // 設定方法はTESTSETを参照
 // AOJに提出するときは下の行を消す
-// #define RIME
+#define RIME
 
 void WA(){
 #ifdef RIME
@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
     // ./checker $judgein $userout $judgeout > diff_log
     // と実行される
     // testlibを使うときはこの違いを吸収しないといけない
-    
+
     // checker   : 判定プログラム
     // $judgein  : 入力ファイル
     // $userout  : ユーザが提出したコードによる出力
@@ -78,11 +78,15 @@ int main(int argc, char *argv[]) {
     int n = inf.readInt(MIN_N, MAX_N);
     inf.readEoln();
     inf.readEof();
+    string s = inf.readLine();
+    inf.readEoln();
+    inf.readEof();
 
     // 解答による出力ファイルを読み込み
-    int a = ouf.readInt(MIN_A, MAX_A);
-    ouf.readSpace();
-    int b = ouf.readInt(MIN_A, MAX_A);
+    int out_n = ouf.readInt(MIN_N, MAX_N);
+    ouf.readEoln();
+    ouf.readEof();
+    string out_s = ouf.readLine();
     ouf.readEoln();
     ouf.readEof();
 
@@ -92,10 +96,26 @@ int main(int argc, char *argv[]) {
 
 #ifdef RIME
     // デバッグ出力
-    cout << a << ' ' << b << ' ' << n << endl;
+    cout << out_n << ' ' << out_s << ' ' << n << ' ' << s << endl;
 #endif
 
     // 判定
-    if(a + b == n) AC();
+    if(out_n == n){
+      int x=0,y=0,nx=0,ny=0;
+      for(int i=0;i<n;i++){
+        if('A'<=s[i]&&s[i]<='M')y++;
+        if('N'<=s[i]&&s[i]<='Z')y--;
+        if('a'<=s[i]&&s[i]<='m')x++;
+        if('n'<=s[i]&&s[i]<='z')x--;
+      }
+      for(int i=0;i<out_n;i++){
+        if('A'<=out_s[i]&&out_s[i]<='M')ny++;
+        if('N'<=out_s[i]&&out_s[i]<='Z')ny--;
+        if('a'<=out_s[i]&&out_s[i]<='m')nx++;
+        if('n'<=out_s[i]&&out_s[i]<='z')nx--;
+      }
+      if(n == ny && y == ny)AC();
+      else WA();
+    }
     else WA();
 }
