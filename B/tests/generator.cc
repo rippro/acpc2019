@@ -14,12 +14,13 @@ using namespace std;
 void output(int N, const string &prefix, int i){
     char name[100];
     //rep回すのめんどくさかったんで
-    char a[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+    char a[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+                'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
     sprintf(name, "%s_%02d.in", prefix.c_str(), i);
     ofstream ofs(name);
     ofs << N << endl;
     for(int j = 0; j < N; ++j){
-        int whichmoji = rnd.next(0, 25);
+        int whichmoji = rnd.next(0, 51);
         ofs << a[whichmoji];
     }
     ofs << endl;
@@ -29,7 +30,8 @@ void output(int N, const string &prefix, int i){
 void output2(int N, const string &prefix, int i){
     char name[100];
     //rep回すのめんどくさかったんで
-    char a[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+    char a[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+                'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
     sprintf(name, "%s_%02d.in", prefix.c_str(), i);
     ofstream ofs(name);
     ofs << N << endl;
@@ -52,12 +54,13 @@ void output2(int N, const string &prefix, int i){
 void output3(int N, const string &prefix, int i){
     char name[100];
     //rep回すのめんどくさかったんで
-    char a[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+    char a[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+                'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
     sprintf(name, "%s_%02d.in", prefix.c_str(), i);
     ofstream ofs(name);
     ofs << N << endl;
     for(int j = 0; j < N; ++j){
-        int whichmoji = j%26;
+        int whichmoji = j%52;
         ofs << a[whichmoji];
     }
     ofs << endl;
