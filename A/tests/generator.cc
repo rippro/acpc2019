@@ -21,6 +21,9 @@ using namespace std;
 #define MIN_N 1
 #define MAX_N 1000
 
+#define MIN_Si 0
+#define MAX_Si 2
+
 // aとbをファイルストリームに出力する
 // ファイル名は prefix_num.in (ex: 00_sample_00.in)
 void output(int x, int t, int s, int n, vector<string> &si, const string &prefix, int num){
@@ -49,7 +52,7 @@ int main(){
         string voice[3] = {"nobiro", "tidime", "karero"};
         vector<string> si(N);
         for(int i = 0; i < N; ++i) {
-            si[i] = voice[rand() % 3];
+            si[i] = voice[rnd.next(MIN_Si, MAX_Si)];
         }
 
         output(X, T, S, N, si, "50_random", i);
