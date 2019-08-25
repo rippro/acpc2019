@@ -30,7 +30,23 @@ int main(){
     // pidを足すことで、1秒以上間を置かずに起動したときに同じシードになってしまうのを防ぐ
     rnd.setSeed(time(0)+getpid());
 
-    // 乱数ケースを10個生成
+    // 手計算できる程度(10ぐらい)に小さいランダムケース
+    for(int i = 0; i < 10; ++i) {
+        int X = rnd.next(MIN_X, 30);
+        int S = rnd.next(MIN_S, 30);
+        int T = rnd.next(MIN_T, 30);
+        int N = rnd.next(MIN_N, 20);
+        
+        string voice[3] = {"nobiro", "tidime", "karero"};
+        vector<string> si(N);
+        for(int j = 0; j < N; ++j) {
+            si[j] = voice[rnd.next(MIN_Si, MAX_Si)];
+        }
+
+        output(X, T, S, N, si, "50_small", i);
+    }
+
+    // 完全ランダム(最大ケースではない)
     for(int i = 0; i < 10; ++i){
         int X = rnd.next(MIN_X, MAX_X);
         int S = rnd.next(MIN_S, MAX_S);
@@ -39,22 +55,88 @@ int main(){
         
         string voice[3] = {"nobiro", "tidime", "karero"};
         vector<string> si(N);
-        for(int i = 0; i < N; ++i) {
-            si[i] = voice[rnd.next(MIN_Si, MAX_Si)];
+        for(int j = 0; j < N; ++j) {
+            si[j] = voice[rnd.next(MIN_Si, MAX_Si)];
         }
 
-        output(X, T, S, N, si, "50_random", i);
+        output(X, T, S, N, si, "51_large", i);
     }
 
-    // 片方が大きいケースを生成
-    // for(int i = 0; i < 10; ++i){
-    //     int A = 1;
-    //     int B = 1;
-    //     while(0.5*A <= B && B <= 1.5*A){
-    //         A = rnd.next(MIN_A, MAX_A);
-    //         B = rnd.next(MIN_B, MAX_B);
-    //     }
-    //     if(rnd.next(0,1)) swap(A, B);
-    //     output(A, B, "60_unbalance", i);
-    // }
+    // 最小ケース
+    {
+        int X = rnd.next(MIN_X, MAX_X);
+        int S = rnd.next(MIN_S, MAX_S);
+        int T = rnd.next(MIN_T, MAX_T);
+        int N = 1;
+        
+        string voice[3] = {"nobiro", "tidime", "karero"};
+        vector<string> si(1);
+        
+        si[0] = voice[rnd.next(MIN_Si, MAX_Si)];
+
+        output(X, T, S, N, si, "52_min", 0);
+    }
+
+    // 最大ケース
+    {
+        int X = 100;
+        int S = 100;
+        int T = 100;
+        int N = 1000;
+        
+        string voice[3] = {"nobiro", "tidime", "karero"};
+        vector<string> si(N);
+        for(int j = 0; j < N; ++j) {
+            si[j] = voice[rnd.next(MIN_Si, MAX_Si)];
+        }
+
+        output(X, T, S, N, si, "53_max", 0);
+    }
+
+    // コーナーケース
+    {//めっちゃ植物が縮むケース
+        int X = 0;
+        int S = -100;
+        int T = -100;
+        int N = 1000;
+
+        string voice[3] = {"nobiro", "tidime", "karero"};
+        vector<string> si(N);
+
+        for(int j = 0; j < N; ++j) {
+            si[j] = voice[rnd.next(MIN_Si, MAX_Si)];
+        }
+
+        output(X, T, S, N, si, "60_challenge", 0);
+    }
+    {//植物がずっと枯れているケース
+        int X = 100;
+        int S = 0;
+        int T = 0;
+        int N = 1000;
+
+        string voice[3] = {"nobiro", "tidime", "karero"};
+        vector<string> si(N);
+
+        for(int j = 0; j < N; ++j) {
+            si[j] = voice[2];
+        }
+
+        output(X, T, S, N, si, "60_challenge", 1);
+    }
+    {//制約が全て0のケース
+        int X = 0;
+        int S = 0;
+        int T = 0;
+        int N = 1;
+
+        string voice[3] = {"nobiro", "tidime", "karero"};
+        vector<string> si(N);
+
+        for(int j = 0; j < N; ++j) {
+            si[j] = voice[rnd.next(MIN_Si, MAX_Si)];
+        }
+
+        output(X, T, S, N, si, "60_challenge", 2);
+    }
 }
