@@ -21,21 +21,56 @@ void output(int n, const T &ss, const string &name){
 int main(){
     rnd.setSeed(time(0)+getpid());
 
-    rep(case_num,10){   //ランダムケース(large)
-        char file_name[100];
-        int N = rnd.next(MIN_N,(int)(MAX_N/3));
+    rep(case_num,5){   //ランダムケース(small)
+      char file_name[100];
+      int N = rnd.next(MIN_N,8);
 
-        vector<string> vs;
-        rep(i,N){
-            //95% [AOR] , 5% [A-Z]
-            vs.push_back( rnd.next("[AORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORA-Z]{%d,%d}",MIN_SI,MAX_SI) );
-        }
-        sprintf(file_name,"11-randomLarge-%02d.in",case_num);
-        output(N,vs,file_name);
+      vector<string> vs;
+      rep(i,N){
+	vs.push_back( rnd.next("[A-Z]{%d,%d}",MIN_SI,MAX_SI) );
+      }
+      sprintf(file_name,"50-randomSmall-%02d.in",case_num);
+      output(N,vs,file_name);
+    }
+    
+    rep(case_num,5){   //ランダムケース(large)
+      char file_name[100];
+      int N = rnd.next(MIN_N,MAX_N);
+
+      vector<string> vs;
+      rep(i,N){
+	vs.push_back( rnd.next("[A-Z]{%d,%d}",MIN_SI,MAX_SI) );
+      }
+      sprintf(file_name,"51-randomLarge-%02d.in",case_num);
+      output(N,vs,file_name);
     }
 
-    rep(case_num,1000){   //ランダムケース(small)
-        char file_name[100];
+    rep(case_num,5){   //ランダムケース(MIN)
+      char file_name[100];
+      int N = MIN_N;
+
+      vector<string> vs;
+      rep(i,N){
+	vs.push_back( rnd.next("[A-Z]{%d,%d}",MIN_SI,MAX_SI) );
+      }
+      sprintf(file_name,"52-randomMIN-%02d.in",case_num);
+      output(N,vs,file_name);
+    }
+    
+    rep(case_num,5){   //ランダムケース(MAX)
+      char file_name[100];
+      int N = MAX_N;
+
+      vector<string> vs;
+      rep(i,N){
+	vs.push_back( rnd.next("[A-Z]{%d,%d}",MIN_SI,MAX_SI) );
+      }
+      sprintf(file_name,"53-randomMAX-%02d.in",case_num);
+      output(N,vs,file_name);
+    }
+    
+    rep(case_num,10){   //ランダムケース(large)
+      char file_name[100];
         int N = rnd.next(MIN_N,MAX_N);
 
         vector<string> vs;
@@ -43,7 +78,20 @@ int main(){
             //95% [AOR] , 5% [A-Z]
             vs.push_back( rnd.next("[AORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORA-Z]{%d,%d}",MIN_SI,MAX_SI) );
         }
-        sprintf(file_name,"11-randomSmall-%02d.in",case_num);
+        sprintf(file_name,"55-randomLargeAOR-%02d.in",case_num);
+        output(N,vs,file_name);
+    }
+
+    rep(case_num,1000){   //ランダムケース(small)
+        char file_name[100];
+        int N = rnd.next(MIN_N,8);
+
+        vector<string> vs;
+        rep(i,N){
+            //95% [AOR] , 5% [A-Z]
+            vs.push_back( rnd.next("[AORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORA-Z]{%d,%d}",MIN_SI,MAX_SI) );
+        }
+        sprintf(file_name,"54-randomSmallAOR-%02d.in",case_num);
         output(N,vs,file_name);
     }
 
@@ -56,7 +104,7 @@ int main(){
         rep(i,N){
             vs.push_back( rnd.next("[AOR]{%d,%d}",MIN_SI,MAX_SI) );
         }
-        sprintf(file_name,"12-onlyAOR-%02d.in",case_num);
+        sprintf(file_name,"56-onlyAOR-%02d.in",case_num);
         output(N,vs,file_name);
     }
 
@@ -69,7 +117,7 @@ int main(){
         rep(i,N){
             vs.push_back( rnd.next("( O | [AOR]{%d,%d} )",MIN_SI,MAX_SI) );
         }
-        sprintf(file_name,"13-manyO-%02d.in",case_num);
+        sprintf(file_name,"57-manyO-%02d.in",case_num);
         output(N,vs,file_name);
     }
 

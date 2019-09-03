@@ -8,5 +8,5 @@
 problem(title = "AOR String",
         id = "D",
         time_limit = 1.0,
-        reference_solution = 'naive'
+        reference_solution = 'TM'
         )
