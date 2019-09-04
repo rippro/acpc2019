@@ -7,6 +7,6 @@
 ##   time_limit: The time limit of this problem in seconds.
 problem(title = "walking",
         id = "D",
-        reference_solution = 'T.M',
+        reference_solution = 'tubo28',
         time_limit = 1.0,
         )
