@@ -18,29 +18,25 @@ void output(int n, const T &ss, const string &name){
     ofs.close();
 }
 void challenge(){
-  int i,j,k,d[10],n=1,sum=0;
+  int i,j,k,d[10],n=1,sum=0,m[9]={2,2,2,3,3,2,3,3,2};
   char name[100]={"60-challenge-XXXXXXXXX.in"};
-  vector<string>s={"A","AO","R","OR","ORA","RA","RAO","ORAO","O"};
-  for(i=0;i<9;i++)n*=2;
+  vector<string>s={"A","AO","R","RA","RAO","OR","ORA","ORAO","O"};
+  for(i=0;i<9;i++)n*=m[i];
   for(i=1;i<n;i++){
     k=i;
-    for(j=sum=0;j<9;j++){
-      d[j]=k%2;
-      k/=2;
+    sum=0;
+    for(j=9;j--;){
+      d[j]=k%m[j];
+      k/=m[j];
       sum+=d[j];
     }
-    //if(sum>8)continue;
+    
     for(j=0;j<9;j++)name[j+13]=d[j]+'0';
     vector<string> vs;
     for(j=0;j<9;j++){
       for(k=0;k<d[j];k++)vs.push_back(s[j]);
     }
     output(sum,vs,name);
-    if(d[5]){
-      vs.push_back(s[5]);
-      name[18]='2';
-      output(sum+1,vs,name);
-    }
   }
 }
 int main(){
@@ -107,7 +103,7 @@ int main(){
         output(N,vs,file_name);
     }
 
-    rep(case_num,1000){   //ランダムケース(small)
+    rep(case_num,100){   //ランダムケース(small)
         char file_name[100];
         int N = rnd.next(MIN_N,8);
 
