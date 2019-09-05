@@ -15,20 +15,20 @@ west(x-=1)←　→east(x+=1)
             ↓
            south(y-=1)
     */
-    int north{}, south{}, east{}, west{};
+    int x{}, y{}; 
     for (auto &i : s)
     {
-        if     ('A' <= i && i <= 'M') ++north;
-        else if('N' <= i && i <= 'Z') ++south;
-        else if('a' <= i && i <= 'm') ++east;
-        else if('n' <= i && i <= 'z') ++west;
+        if     ('A' <= i && i <= 'M') ++y;
+        else if('N' <= i && i <= 'Z') --y;
+        else if('a' <= i && i <= 'm') ++x;
+        else if('n' <= i && i <= 'z') --x;
     }
-    cout << abs(north-south+east-west) << '\n';
+    cout << abs(x)+abs(y) << '\n';
     
-    for(int i{}; i < north-south; ++i) cout << 'A';
-    for(int i{}; i < south-north; ++i) cout << 'N';
-    for(int i{}; i < east-west; ++i)   cout << 'a';
-    for(int i{}; i < west-east; ++i)   cout << 'n';
+    for(int i{}; i < y; ++i) cout << 'A';
+    for(int i{}; i < -y; ++i) cout << 'N';
+    for(int i{}; i < x; ++i)   cout << 'a';
+    for(int i{}; i < -x; ++i)   cout << 'n';
 
     cout << '\n';
 }
