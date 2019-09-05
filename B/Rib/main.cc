@@ -23,7 +23,7 @@ west(x-=1)←　→east(x+=1)
         else if('a' <= i && i <= 'm') ++east;
         else if('n' <= i && i <= 'z') ++west;
     }
-    cout << north-south+east-west << '\n';
+    cout << abs(north-south+east-west) << '\n';
     
     for(int i{}; i < north-south; ++i) cout << 'A';
     for(int i{}; i < south-north; ++i) cout << 'N';
