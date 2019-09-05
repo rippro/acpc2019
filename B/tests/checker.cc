@@ -17,7 +17,6 @@ using namespace std;
 // g++ checker -D RIME
 // 設定方法はTESTSETを参照
 // AOJに提出するときは下の行を消す
-#define RIME
 
 void WA(){
 #ifdef RIME
@@ -74,47 +73,69 @@ int main(int argc, char *argv[]) {
     registerTestlibCmd(argc, argv);
 #endif
 
-    // 入力ファイルの読み込み
+    // 入力ファイルの読み込み testcaseの入力
     int n = inf.readInt(MIN_N, MAX_N);
     inf.readEoln();
-    inf.readEof();
     string s = inf.readLine();
     inf.readEoln();
     inf.readEof();
 
-    // 解答による出力ファイルを読み込み
-    int out_n = ouf.readInt(MIN_N, MAX_N);
+    #ifdef RIME
+        // デバッグ出力
+        cout<<"debug output: ";
+        cout << n << ' ' << s << endl;
+    #endif
+
+    // 解答による出力ファイルを読み込み(提出されてたファイル)
+    int out_n = ouf.readInt(0, MAX_N);
     ouf.readEoln();
-    ouf.readEof();
-    string out_s = ouf.readLine();
+    string out_s;
+    if(out_n > 0)out_s = ouf.readLine();
     ouf.readEoln();
     ouf.readEof();
 
+    #ifdef RIME
+        // デバッグ出力
+        cout<<"debug output: ここまで完了";
+    #endif
+
     // 正答ファイルを読み込み
     // 不要だがEOFまで読み込んでないとエラーになるので読み飛ばす
+    // diff file
+    int diff_n = ans.readInt(0,MAX_N);
     while(!ans.seekEof()) ans.readChar();
 
 #ifdef RIME
     // デバッグ出力
+    cout<<"debug output: ";
     cout << out_n << ' ' << out_s << ' ' << n << ' ' << s << endl;
 #endif
+    if(out_n != (int)(out_s.size())){
+      WA();
+      return 0;
+    }
+    if(out_n == 0 && diff_n == 0){
+      AC();
+      return 0;
+    }
 
     // 判定
-    if(out_n == n){
-      int x=0,y=0,nx=0,ny=0;
+    if(out_n == diff_n){
+      int x=0,y=0,out_x=0,out_y=0;
       for(int i=0;i<n;i++){
         if('A'<=s[i]&&s[i]<='M')y++;
         if('N'<=s[i]&&s[i]<='Z')y--;
         if('a'<=s[i]&&s[i]<='m')x++;
         if('n'<=s[i]&&s[i]<='z')x--;
       }
+
       for(int i=0;i<out_n;i++){
-        if('A'<=out_s[i]&&out_s[i]<='M')ny++;
-        if('N'<=out_s[i]&&out_s[i]<='Z')ny--;
-        if('a'<=out_s[i]&&out_s[i]<='m')nx++;
-        if('n'<=out_s[i]&&out_s[i]<='z')nx--;
+        if('A'<=out_s[i]&&out_s[i]<='M')out_y++;
+        if('N'<=out_s[i]&&out_s[i]<='Z')out_y--;
+        if('a'<=out_s[i]&&out_s[i]<='m')out_x++;
+        if('n'<=out_s[i]&&out_s[i]<='z')out_x--;
       }
-      if(n == ny && y == ny)AC();
+      if( y == out_y && x == out_x)AC();
       else WA();
     }
     else WA();

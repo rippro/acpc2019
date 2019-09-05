@@ -64,13 +64,12 @@ int main(){
     if(s[i]=='A'&&s[i+1]=='O')t=2;
     d[f][t]++;
   }
-  if(d[1][1]&&d[1][1]==d[2][2]&&n==d[0][0]+d[1][1]+d[2][2]+o)ans--;
   for(i=1;i<9;i++)add(0  ,i,d[i/3][i%3]);
   for(i=1;i<9;i++)add(i+9,9,d[i/3][i%3]);
   for(i=0;i<64;i++){
     f=i/8+1;
     t=i%8+1;
-    if(f%3+t/3==3)add(f,t+9,f-t?MIN(d[f/3][f%3],d[t/3][t%3]):d[f/3][f%3]-1);
+    if(f%3+t/3==3)add(f,t+9,MIN(d[f/3][f%3],d[t/3][t%3])-(f-t?0:1));
   }
   for(i=0;i<3;i++){
     add(i*3+1,18,d[i][1]);
@@ -80,9 +79,9 @@ int main(){
   mkls(20,r,a,b,c);
   ans+=maxf(0,9,20,r);
   co[r-1]=o;
-  f=co[0]+co[6]+co[10]+co[12];
   ans+=maxf(0,9,20,r);
-  if(co[36]+co[37]+f==0&&co[36+r])ans--;
+  f=co[3]+co[4]+co[6]+co[7]+co[12]+co[13]+co[15]+co[16];
+  if(f+d[0][1]+d[0][2]+d[1][0]+d[2][0]==0&&co[3+r]+co[4+r]+co[6+r]+co[7+r])ans--;
   printf("%d\n",ans);
   return 0;
 }

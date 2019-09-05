@@ -8,6 +8,7 @@ int main(){
     if(s[0]=='n')n+=a;
     if(s[0]=='t')n+=b;
     if(s[0]=='k')n=0;
+    if(n<0)n=0;
   }
   printf("%d\n",n);
   return 0;

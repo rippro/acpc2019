@@ -58,7 +58,7 @@ int main(){
     if(s[i]=='A'&&s[i+1]=='O')t=2;
     d[f][t]++;
   }
-  if(d[1][1]&&d[1][1]==d[2][2]&&n==d[0][0]+d[1][1]+d[2][2]+o)ans--;
+  //if(d[1][1]&&d[1][1]==d[2][2]&&d[0][1]+d[0][2]+d[1][0]+d[2][0]==0)ans--;
   for(i=1;i<9;i++){
     a[r  ]=0;
     b[r  ]=i;
@@ -90,13 +90,25 @@ int main(){
   }
   a[r  ]=18;
   b[r  ]=19;
-  c[r++]=0;
+  c[r++]=o;
   mkls(20,r,a,b,c);
+  //ans+=maxf(0,9,20,r);
+  //co[r-1]=o;
+  //f=co[0]+co[6]+co[10]+co[12];
+  f=d[0][1]+d[0][2]+d[1][0]+d[2][0];
+  //if(d[1][1]&&o&&co[3]<=o&&f==0)ans--;
   ans+=maxf(0,9,20,r);
-  co[r-1]=o;
-  f=co[0]+co[6]+co[10]+co[12];
-  ans+=maxf(0,9,20,r);
-  if(co[36]+co[37]==0&&co[36+r]&&(f)==0)ans--;
+  /*printf("%d %d %d\n%d %d %d\n%d %d %d\n%d %d %d\n",
+	 a[3],b[3],co[3],a[4],b[4],co[4],a[6],b[6],co[6],a[7],b[7],co[7]);
+  printf("%d %d\n%d %d\n%d %d\n%d %d\n",
+  to[3+r],co[3+r],to[4+r],co[4+r],to[6+r],co[6+r],to[7+r],co[7+r]);//*/
+  f+=co[3]+co[4]+co[6]+co[7]+co[12]+co[13]+co[15]+co[16];
+  //printf("%d %d %d %d\n",d[0][1],d[0][2],d[1][0],d[2][0]);
+  if(f==0&&co[3+r]+co[4+r]+co[6+r]+co[7+r])ans--;
+  //printf("%d %d %d %d %d %d\n",f,ans,a[3],b[3],a[11],b[11]);
+  //if(co[36]+co[37]==0&&co[36+r]&&(f)==0)ans--;
+  //printf("%d %d\n",co[3],co[11]);
+  //if(d[1][1]&&f==0&&co[3]+co[11]==0)ans--;
   printf("%d\n",ans);
   return 0;
 }
