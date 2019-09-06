@@ -2,6 +2,18 @@
 using namespace std;
 using pi = pair<int, int>;
 
+/*CAUTION!!
+case
+3 2
+1 3
+2 3
+のとき
+1 2 3
+1 2 3
+1 2 3
+
+つまり1 2が直接繋がってなくても同値にはなる
+*/
 signed main()
 {
     int n, m; cin >> n >> m;
