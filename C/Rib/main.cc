@@ -5,39 +5,30 @@ using pi = pair<int, int>;
 signed main()
 {
     int n, m; cin >> n >> m;
-    vector<pi> p;
+    vector<vector<int>> d(n, vector<int>(m, 0));
     for(int i{}; i < m; ++i)
     {
         int a, b; cin >> a >> b;
-        //--a;--b;
-        if(a > b) swap(a,b);
-
-        p.emplace_back(a,b);
+        --a;--b;
+        d[a][b]++;
+        d[b][a]++;
     }
-    sort(p.begin(), p.end());
-    p.erase(unique(p.begin(), p.end()), p.end());
-
-    
-
-    /*debug
-    for(auto const &i: p)
-    {
-        cout << i.first << ' ' << i.second << '\n';
-    }
-    */
-
-    /*prev
-    int prev{};
     for(int i{}; i < n; ++i)
     {
-        if(prev+1 == p[i].first) cout << prev+1 << ' ';
-        if(p[i].first == prev)
+        set<int> z;        
+        for(int j{}; j < d[i].size(); ++j)
         {
-            cout << p[i].second << ' ';
+            if(d[i][j] > 0)
+            {
+                z.insert(i+1);
+                z.insert(j+1);
+            }
         }
-        if(p[i].first)
-
-        prev = p[i].first;        
+        for(auto const &k: z)
+        {
+            cout << k << ' ';
+        }
+        cout << '\n';
     }
-    */
+
 }
