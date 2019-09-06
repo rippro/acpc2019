@@ -18,7 +18,7 @@ int main(){
   }
   for(i=0;i<n;i++){
     for(j=k=0;j<n;j++){
-      if(d[i][j]==0){
+      if(d[i][j]+d[j][i]==0){
 	if(k)printf(" ");
 	printf("%d",j+1);
 	k=1;
