@@ -1,11 +1,8 @@
-//SCC
 #include<iostream>
 #include<vector>
 using namespace std;
-#define MAX 305
-int n;
-vector<int> g[MAX],rg[MAX],vs;
-int used[MAX],cmp[MAX];
+vector<vector<int> > g,rg;
+vector<int> vs,used,cmp;
 
 void dfs(int v){
     used[v] = 1;
@@ -24,8 +21,10 @@ void rdfs(int v, int k){
 }
 
 int main(){
-    int m;
+    int n,m;
     cin >> n >> m;
+    g = rg = vector<vector<int> >(n);
+    used = cmp = vector<int>(n,0);
     for(int i = 0; i < m; i++){
         int a,b;
         cin >> a >> b;
@@ -36,7 +35,7 @@ int main(){
     for(int v = 0; v < n; v++){
         if(!used[v])dfs(v);
     }
-    memset(used,0,sizeof(used));
+    used = vector<int>(n,0);
     int k = 0;
     for(int i = vs.size()-1; i >= 0; i--){
         if(!used[vs[i]])rdfs(vs[i],k++);
