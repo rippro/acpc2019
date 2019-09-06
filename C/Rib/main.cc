@@ -15,8 +15,18 @@ signed main()
         p.emplace_back(a,b);
     }
     sort(p.begin(), p.end());
-    p.erase(unique(p.begin(), p.end()), p.end());    
+    p.erase(unique(p.begin(), p.end()), p.end());
 
+    
+
+    /*debug
+    for(auto const &i: p)
+    {
+        cout << i.first << ' ' << i.second << '\n';
+    }
+    */
+
+    /*prev
     int prev{};
     for(int i{}; i < n; ++i)
     {
@@ -25,8 +35,9 @@ signed main()
         {
             cout << p[i].second << ' ';
         }
-
+        if(p[i].first)
 
         prev = p[i].first;        
     }
+    */
 }
