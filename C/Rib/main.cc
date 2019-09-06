@@ -23,10 +23,17 @@ signed main()
                 z.insert(i+1);
                 z.insert(j+1);
             }
+            z.insert(i+1);
         }
-        for(auto const &k: z)
+        for(int k{}; k < z.size(); ++k)
         {
-            cout << k << ' ';
+            auto itr = z.begin();
+            advance(itr, k);
+            cout << *itr;
+            if(k != z.size()-1)
+            {
+                cout << ' ';
+            }
         }
         cout << '\n';
     }
