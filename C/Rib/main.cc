@@ -5,9 +5,9 @@ using namespace std;
 signed main()
 {
     int n, m; cin >> n >> m;
-    vector<vector<int>> d(n, vector<int>(m, 1));
+    vector<vector<int>> d(n, vector<int>(n, 1));
     for(int i{}; i < n; ++i)
-    for(int j{}; j < m; ++j)d[i][i]=0;
+    for(int j{}; j < n; ++j)d[i][i]=0;
 
     for(int i{}; i < m; ++i)
     {
@@ -25,7 +25,7 @@ signed main()
     for(int i{}; i < n; ++i)
     {
         bool flag = false;
-        for(int j{}; j < m; ++j)
+        for(int j{}; j < n; ++j)
         {
             if(d[i][j]==0)
             {
