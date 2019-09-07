@@ -75,18 +75,21 @@ int main(){
     if(f%3+t/3==3){
       a[r  ]=f;
       b[r  ]=t+9;
-      c[r++]=(f==t?MAX(0,d[f/3][f%3]-1):MIN(d[f/3][f%3],d[t/3][t%3]));
-    }
+      //c[r++]=(f==t?MAX(0,d[f/3][f%3]-1):MIN(d[f/3][f%3],d[t/3][t%3]));
+      c[r++]=(f==t?MAX(0,d[f/3][f%3]-1):1e9);
+   }
   }
   for(i=0;i<3;i++){
     f=i*3+1;
     t=i  +3+9;
     a[r  ]=f;
     b[r  ]=18;
-    c[r++]=d[i][1];
+    //c[r++]=d[i][1];
+    c[r++]=1e9;
     a[r  ]=19;
     b[r  ]=t;
-    c[r++]=d[1][i];
+    //c[r++]=d[1][i];
+    c[r++]=1e9;
   }
   a[r  ]=18;
   b[r  ]=19;
@@ -95,16 +98,26 @@ int main(){
   //ans+=maxf(0,9,20,r);
   //co[r-1]=o;
   //f=co[0]+co[6]+co[10]+co[12];
-  f=d[0][1]+d[0][2]+d[1][0]+d[2][0];
+  //f=d[0][1]+d[0][2]+d[1][0]+d[2][0];
   //if(d[1][1]&&o&&co[3]<=o&&f==0)ans--;
-  ans+=maxf(0,9,20,r);
+  t=maxf(0,9,20,r);
+  //printf("%d %d\n",t,f);
+  ans+=t;
   /*printf("%d %d %d\n%d %d %d\n%d %d %d\n%d %d %d\n",
 	 a[3],b[3],co[3],a[4],b[4],co[4],a[6],b[6],co[6],a[7],b[7],co[7]);
   printf("%d %d\n%d %d\n%d %d\n%d %d\n",
   to[3+r],co[3+r],to[4+r],co[4+r],to[6+r],co[6+r],to[7+r],co[7+r]);//*/
-  f+=co[3]+co[4]+co[6]+co[7]+co[12]+co[13]+co[15]+co[16];
+  f=d[0][1]+d[0][2]+d[1][0]+d[2][0]+co[3]+co[4]+co[6]+co[7];
+  //+co[11]+co[12]+co[14]+co[15];
+  /*printf("%d %d %d\n%d %d %d\n%d %d %d\n%d %d %d\n",
+	 a[11],b[11],co[11],a[12],b[12],co[12],
+	 a[14],b[14],co[14],a[15],b[15],co[15]);
+  printf("%d %d %d %d\n%d %d %d %d\n",
+  co[3],co[4],co[6],co[7],co[11],co[12],co[14],co[15]);//*/
   //printf("%d %d %d %d\n",d[0][1],d[0][2],d[1][0],d[2][0]);
-  if(f==0&&co[3+r]+co[4+r]+co[6+r]+co[7+r])ans--;
+  //if(f==0&&co[3+r]+co[4+r]+co[6+r]+co[7+r])ans--;
+  //printf("%d\n",f);
+  if(f==0&&t)ans--;
   //printf("%d %d %d %d %d %d\n",f,ans,a[3],b[3],a[11],b[11]);
   //if(co[36]+co[37]==0&&co[36+r]&&(f)==0)ans--;
   //printf("%d %d\n",co[3],co[11]);
