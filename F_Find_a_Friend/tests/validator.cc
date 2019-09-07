@@ -4,6 +4,7 @@
 #include <vector>
 #include <tuple>
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
@@ -30,13 +31,15 @@ int main(){
 	}
 	inf.readEof();
 
-	sort(m.begin(), m.end());
-
 	int count = 0;
 	vector<bool> exist(N, false);
+	int pre_time = -1;
 	for(auto t : m){
 		int time, num, in;
 		tie(time, num, in) = t;
+
+		assert(pre_time < time);
+		pre_time = time;
 
 		if(in){ // 入室
 			count++;
@@ -46,7 +49,6 @@ int main(){
 			exist[num] = true;
 		}else{ // 退室
 			count--;
-			exist[num] = false;
 			assert(count >= 0);
 
 			assert(exist[num]);
