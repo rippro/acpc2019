@@ -13,18 +13,22 @@ using namespace std;
 // ファイル名は prefix_num.in (ex: 00_sample_00.in)
 int a[MAX_M],b[MAX_M],c[MAX_M];
 void output(int n, int m, int t, const string &prefix, int num){
-    int flag[MAX_N+1] = {};
+    int flag[MAX_N+1] = {};//直前に入った時刻, 0は部屋の外
     int room_num = 0;
-    rep(i,m){
-        a[i] = rnd.next(MIN_A, t);
-        b[i] = rnd.next(MIN_B,n);
-        while(flag[b[i]] == 0 && room_num == 100)b[i] = rnd.next(MIN_B,n);
-        c[i] = flag[b[i]] == 0;
-        if(c[i])room_num++;
-        else room_num--;
-        flag[b[i]] = 1 - flag[b[i]];
-    }
+    rep(i,m)a[i] = rnd.next(MIN_A, t);
     sort(a,a+m);
+    rep(i,m){
+        do{
+            b[i] = rnd.next(MIN_B,n);
+            while(flag[b[i]] == 0 && room_num == 100)b[i] = rnd.next(MIN_B,n);
+            c[i] = flag[b[i]] == 0;
+        }while(c[i] == 0 && flag[b[i]] == a[i]);//入った瞬間に出るやつを弾く
+        if(c[i]){
+            flag[b[i]] = a[i], room_num++;
+        }else{
+            flag[b[i]] = 0, room_num--;
+        }
+    }
     char name[100];
     sprintf(name, "%s_%02d.in", prefix.c_str(), num);
     ofstream ofs(name);

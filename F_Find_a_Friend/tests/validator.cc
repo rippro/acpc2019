@@ -18,7 +18,6 @@ int main(){
 	inf.readEoln();
 
 	vector<tuple<int,int,int>> m(M);
-	int cnt = 0;
 	for (int i = 0; i < M; i++) {
 		int A = inf.readInt(MIN_A, MAX_A);
 		inf.readSpace();
@@ -31,6 +30,10 @@ int main(){
 		m[i] = make_tuple(A, B, C);
 	}
 	inf.readEof();
+
+	for (int i = 0; i < M - 1; i++) {
+		if(get<0>(m[i]) == get<0>(m[i + 1])) assert(get<1>(m[i]) != get<1>(m[i + 1]));
+	}
 
 	int count = 0;
 	vector<bool> exist(N, false);
