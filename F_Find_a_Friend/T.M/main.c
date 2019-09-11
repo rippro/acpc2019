@@ -1,10 +1,11 @@
 #include<stdio.h>
 int f[100010],w[100010],mi;
 void udw(int p,int add,int i){
+  if(add==0)return ;
   if(f[p]<i)w[p] =add;
   else      w[p]+=add;
   f[p]=i;
-  if(mi<0||w[mi]<w[p])mi=p;
+  if(mi<0||w[mi]<w[p]||(w[mi]==w[p]&&mi>p))mi=p;
 }
 int MAX(int a,int b){return a<b?b:a;}
 int rt[100110][100],rp[100110][110];
@@ -46,28 +47,32 @@ int main(){
       rt[i+1][j]=rt[i][j];
     }
   }
-  /*for(i=0;i<m;i++){
-    for(j=0;j<n;j++)printf("%d %d:",rp[i][j],rt[i][j]);printf("\n");
-    }printf("\n");//*/
+  /*OK
+  for(i=0;i<m;i++){printf("%2d:",i);
+    for(j=0;j<n;j++)printf("%2d %2d|",rp[i][j]+1,rt[i][j]);printf("\n");
+  }printf("\n");//*/
   for(b=i=m;i--;){
     no[i]=b;
     if(q[i])b=i;
     nt[i]=ta[p[i]];
     ta[p[i]]=i;
   }
-  /*for(i=0;i<n;i++){
-    printf("%d:",i);
+  /*OK
+  for(i=0;i<n;i++){
+    printf("%d:",i+1);
     for(j=ta[i];j+1;j=nt[j])printf("%d ",j);printf("\n");
-    }printf("\n");//*/
-
+  }printf("\n");//*/
+  //for(i=0;i<m;i++)printf("%2d %2d %2d\n",i,no[i],p[no[i]]);printf("\n");
   for(i=0;i<n;i++){
     mi=-1;
     for(ii=ta[i];ii+1;ii=nt[nt[ii]]){
       for(j=no[ii];j<nt[ii];j=no[j]){
+	//printf("%d %d %d %d %d\n",p[j]+1,t[j],t[ii],rt[j][c[j]],i+1);
 	udw(p[j],t[j]-MAX(t[ii],rt[j][c[j]]),i);
       }
       for(l=0;l<k;l++){
 	if(rp[j][l]<0)continue;
+	//printf("%d %d %d %d %d\n",rp[j][l]+1,t[j],t[ii],rt[j][l],i+1);
 	udw(rp[j][l],t[j]-MAX(t[ii],rt[j][l]),i);
       }
     }

@@ -21,16 +21,19 @@ int main(){
     }
     //for(j=0;j<n;j++)printf("%d ",d[j]);printf("\n");
     
-  }/*
+  }//*
   for(i=0;i<n;i++){
     if(d[i]<0)continue;
     for(j=0;j<n;j++){
-      if(d[j]<0)continue;
-      s[i][j]+=e-MAX(d[p],d[j]);
+      if(i==j||d[j]<0)continue;
+      s[i][j]+=e-MAX(d[i],d[j]);
+      //printf("!%d %d %d %d %d %d\n",s[i][j],i,j,t,d[i],d[j]);
     }
-    }//*/
+    d[i]=-1;
+  }//*/
   for(i=0;i<n;i++){
-    for(j=m=0;j<n;j++){//printf("%d ",s[i][j]);
+    m=i?0:1;
+    for(j=0;j<n;j++){//printf("%d ",s[i][j]);
       if(i==j)continue;
       if(s[i][m]+s[m][i]<s[i][j]+s[j][i])m=j;
     }
