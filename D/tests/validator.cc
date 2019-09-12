@@ -41,7 +41,7 @@ int main(){
 		g[b].emplace_back(a);
 	}
 	vector<bool> used(N, false);
-	assert(not isTree(g, 0, -1, used));
+	assert(isTree(g, 0, -1, used));
 
 	inf.readEof();
 }
