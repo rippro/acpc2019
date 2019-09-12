@@ -4,40 +4,44 @@
 #include "./constraints.hpp"
 #include <sys/types.h>
 #include <unistd.h>
+#include <vector>
 
 using namespace std;
 
 #define rep(i,n) for(int i=0;i<(int)(n);i++)
-vector<int> a, b, w;
+vector<vector<int> > edge;
 
 // ファイル名は prefix_num.in (ex: 00_sample_00.in)
-void output(int N, int T, int S, int E, vector<int> a, vector<int> b, vector<int> w, const string &prefix, int num){
+void output(int N, int T, int S, int E, const string &prefix, int num){
     char name[100];
     sprintf(name, "%s_%02d.in", prefix.c_str(), num);
     ofstream ofs(name);
     ofs << N << " " << T << " " << S << " " << E << endl;
-    rep(i, N) ofs << a[i] << " " << b[i] << " " << w[i] << endl;
+    rep(i, N-1) ofs << edge[i][0] << " " << edge[i][1] << " " << edge[i][2] << endl;
     ofs.close();
+    edge.clear();
 }
 
 void make_graph(int N){
-    for (int i = 1; i <= N; i++) {
+    for (int i = 1; i < N; i++) {
         int initial, terminal, cost;
-        initial = i + 1, terminal = rnd.next(1, i), cost = rnd.next(1, 100);
+        initial = i + 1, terminal = rnd.next(1, i), cost = rnd.next(MIN_T, MAX_T);
         int random = rnd.next(1, 100000);
-        if (random % 3 == 0) swap(initial, terminal);
-        a.push_back(initial), b.push_back(terminal), w.push_back(cost);
+        if (random % 2 == 0) swap(initial, terminal);
+        vector<int> in{initial, terminal, cost};
+        edge.push_back(in);
+        //edge[0].push_back(initial), edge[1].push_back(terminal), edge[2].push_back(cost);
     }
+    shuffle(edge.begin(),edge.end());
 }
 
 void case_50_small(){
     for (int k = 1; k <= 10; k++) {
         int N = rnd.next(MIN_N, 10);
         int T = rnd.next(MIN_T, 100);
-        int S = rnd.next(MIN_N, N), E = rnd.next(MIN_N, N);
+        int S = rnd.next(1, N), E = rnd.next(1, N);
         make_graph(N);
-        output(N, T, S, E, a, b, w, "50_small", k);
-        a.empty(), b.empty(), w.empty();
+        output(N, T, S, E, "50_small", k);
     }
 }
 
@@ -45,32 +49,111 @@ void case_51_large(){
     for (int k = 1; k <= 15; k++) {
         int N = rnd.next(MIN_N, MAX_N);
         int T = rnd.next(MIN_T, MAX_T);
-        int S = rnd.next(MIN_N, N), E = rnd.next(MIN_N, N);
+        int S = rnd.next(1, N), E = rnd.next(1, N);
         make_graph(N);
-        output(N, T, S, E, a, b, w, "51_large", k);
-        a.empty(), b.empty(), w.empty();
+        output(N, T, S, E, "51_large", k);
     }
 }
 
 void case_52_min(){
     int N = MIN_N;
-    int T = MIN_T;
-    int S = MIN_N, E = MIN_N;
-    vector<int> a(N), b(N), w(N);
-    a[0] = 1, b[0] = 1, w[0] = 1;
-    output(N, T, S, E, a, b, w, "52_min", 1);
+    for(int k = 1; k < 5; k++){
+        int T = rnd.next(MIN_T, MAX_T);
+        int S = rnd.next(1, N), E = rnd.next(1, N);
+        make_graph(N);
+        output(N, T, S, E, "52_min", k);
+    }
 }
 
 void case_53_max(){
     for(int k = 1; k <= 15; k++){
         int N = MAX_N;
         int T = MAX_T;
-        int S = rnd.next(MIN_N, N), E = rnd.next(MIN_N, N);
+        int S = rnd.next(1, N), E = rnd.next(1, N);
         make_graph(N);
-        output(N, T, S, E, a, b, w, "53_max", k);
-        a.empty(), b.empty(), w.empty();
+        output(N, T, S, E, "53_max", k);
     }
 }
+
+int make_shuffle(int n){
+    vector<int> v;
+    rep(i,n)v.push_back(i);
+    shuffle(v.begin(),v.end());
+    rep(i,n-1){
+        edge[i][0] = v[edge[i][0] - 1] + 1;
+        edge[i][1] = v[edge[i][1] - 1] + 1;
+    }
+    return v.back();
+}
+
+void case_54_path(){
+    for(int k = 1; k <= 10; k++){
+        int N = rnd.next(MIN_N, MAX_N);
+        int T = rnd.next(MIN_T, MAX_T);
+        int S = rnd.next(1, N), E = rnd.next(1, N);
+        rep(i,N-1){
+            int cost = rnd.next(MIN_T, MAX_T);
+            vector<int> in{i+1, i+2, cost};
+            edge.push_back(in);
+        }
+        make_shuffle(N);
+        output(N, T, S, E, "54_path", k);
+    }
+}
+
+void case_55_star(){
+    for(int k = 1; k <= 2; k++){//S中心 E中心
+        int N = rnd.next(MIN_N, MAX_N);
+        int T = rnd.next(MIN_T, MAX_T);
+        int S, E;
+        rep(i,N-1){
+            int cost = rnd.next(MIN_T, MAX_T);
+            vector<int> in{i+1, N, cost};
+            edge.push_back(in);
+        }
+        S = E = make_shuffle(N);//中心
+        output(N, T, S, E, "55_star", k);
+    }
+    for(int k = 3; k <= 4; k++){//S中心 E外
+        int N = rnd.next(MIN_N, MAX_N);
+        int T = rnd.next(MIN_T, MAX_T);
+        int S, E = rnd.next(1, N);
+        rep(i,N-1){
+            int cost = rnd.next(MIN_T, MAX_T);
+            vector<int> in{i+1, N, cost};
+            edge.push_back(in);
+        }
+        S = make_shuffle(N);
+        while(S == E) E = rnd.next(1, N);
+        output(N, T, S, E, "55_star", k);
+    }
+    for(int k = 5; k <= 6; k++){//S外 E中心
+        int N = rnd.next(MIN_N, MAX_N);
+        int T = rnd.next(MIN_T, MAX_T);
+        int S = rnd.next(1, N), E;
+        rep(i,N-1){
+            int cost = rnd.next(MIN_T, MAX_T);
+            vector<int> in{i+1, N, cost};
+            edge.push_back(in);
+        }
+        E = make_shuffle(N);
+        while(S == E) S = rnd.next(1, N);
+        output(N, T, S, E, "55_star", k);
+    }
+    for(int k = 7; k <= 10; k++){//ランダム
+        int N = rnd.next(MIN_N, MAX_N);
+        int T = rnd.next(MIN_T, MAX_T);
+        int S = rnd.next(1, N), E = rnd.next(1, N);
+        rep(i,N-1){
+            int cost = rnd.next(MIN_T, MAX_T);
+            vector<int> in{i+1, N, cost};
+            edge.push_back(in);
+        }
+        make_shuffle(N);
+        output(N, T, S, E, "55_star", k);
+    }
+}
+
 
 int main(){
     // 乱数のシードを設定
@@ -81,5 +164,7 @@ int main(){
     case_51_large();
     case_52_min();
     case_53_max();
+    case_54_path();
+    case_55_star();
     return 0;
 }
