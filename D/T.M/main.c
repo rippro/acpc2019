@@ -1,5 +1,5 @@
 #include<stdio.h>
-int cc[100010],o[100010],ta[100010],to[200010],nt[200010],co[100010],S,T;
+int cc[100010],o[100010],ta[100010],to[200010],nt[200010],co[200010],S,T;
 int R=1,C=1,H[2000010],N[2000010];
 //評価関数（いまはMAX）
 int hyouka(int a,int b){
@@ -20,23 +20,25 @@ int hout(){
   H[j/2]=k;
   return rt;
 }
+int d[100010],r=0;
 int f(int s,int p){//printf("%d %d\n",s,p);
-  int i,r=0,c=0,d[100010];
+  int i,a=0;
   for(i=ta[s];i+1;i=nt[i]){
     if(to[i]==p)continue;
     if(f(to[i],s)==0)return 0;
-    r=co[i]-cc[to[i]];
+    a=co[i]-cc[to[i]];
     if(o[to[i]]){
       o[s]=1;
-      if(r<1)return 0;
+      if(a<1)return 0;
     }
     else{
-      if(r<2+(s!=S?1:0))return 0;
-      d[c++]=r;
+      if(a<2+(s!=S?1:0))return 0;
+      d[r++]=a;
     }
   }//printf("s%d:",s);
   R=C=1;
-  for(i=0;i<c;i++)hin(d[i]);
+  for(i=0;i<cc[s];i++)hin(d[r-i-1]);
+  r-=cc[s];
   //for(i=1;i<R;i++)printf("%d ",N[i]);printf("\n");
   if(s==S)i=2;
   else    i=3;
