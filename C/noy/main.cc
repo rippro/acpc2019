@@ -106,9 +106,7 @@ signed main(){
 	vector<vector<int>> ans(n);
 	rep(i,node.size()){
 		rep(j,node[i].size()){
-			rep(k,node[i].size()){
-				ans[node[i][j]].emplace_back(node[i][k]);
-			}
+			ans[node[i][j]] = node[i];
 		}
 	}
 
