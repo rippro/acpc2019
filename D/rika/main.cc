@@ -44,7 +44,7 @@ int dfs(int now, int par){
     int ret = 0;
     priority_queue<pii> q;
     for(auto ne: G[now]){
-        if(path[ne])continue;//s-gパス上にある頂点には行かない
+        if(path[ne] || ne == par)continue;//s-gパス上にある頂点には行かない
         int tmp = dfs(ne,now);
         dec(now,ne,tmp);
         ret++;
@@ -74,6 +74,7 @@ int main(){
     dfs_path(s,-1);
     rep(i,n)if(path[i])dfs(i,-1);
     for(auto x: ma){
+        //cout << x.first.first << " " << x.first.second << " " << x.second << endl;
         if(x.second <= 0){
             cout << "No" << endl;
             return 0;
