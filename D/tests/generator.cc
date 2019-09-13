@@ -181,6 +181,6 @@ int main(){
     case_53_max();
     case_54_path();
     case_55_star();
-    challenge00();
+    //challenge00();
     return 0;
 }
