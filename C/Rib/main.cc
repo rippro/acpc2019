@@ -27,7 +27,7 @@ signed main()
         bool flag = false;
         for(int j{}; j < n; ++j)
         {
-            if(d[i][j]==0)
+            if(d[i][j] == 0 && d[j][i] == 0)//i->j ^ j -> i
             {
                 if(flag)
                 cout << ' ';
