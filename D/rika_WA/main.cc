@@ -38,7 +38,7 @@ bool dfs(int now, int par){
         else ret = false;
     }
     if(used[now] == 0){
-        used[now]++;
+        used[now] = true;
     }
     return ret;
 }
@@ -69,6 +69,7 @@ int main(){
         }
     }
     dfs(s,-1);
+    //rep(i,n)cout << " " << cnt[i];cout << endl;
     rep(i,n-1){
         int sum = cnt[a[i]] + cnt[b[i]] - 1;
         if(c[i] <= sum*t){
