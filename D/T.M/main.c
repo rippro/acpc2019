@@ -22,7 +22,7 @@ int hout(){
 }
 int d[100010],r=0;
 int f(int s,int p){//printf("%d %d\n",s,p);
-  int i,a=0;
+  int i,a=0,br=r;
   for(i=ta[s];i+1;i=nt[i]){
     if(to[i]==p)continue;
     if(f(to[i],s)==0)return 0;
@@ -37,9 +37,12 @@ int f(int s,int p){//printf("%d %d\n",s,p);
     }
   }//printf("s%d:",s);
   R=C=1;
-  for(i=0;i<cc[s];i++)hin(d[r-i-1]);
-  r-=cc[s];
+  //printf("!!%d %d %d\n",s,cc[s],r);
+  //for(i=0;i<r;i++)printf("%d ",d[i]);printf("\n");
+  for(i=br;i<r;i++)hin(d[i]);
+  r=br;
   //for(i=1;i<R;i++)printf("%d ",N[i]);printf("\n");
+  //printf("CR%d %d\n",C,R);
   if(s==S)i=2;
   else    i=3;
   while(C-1){
