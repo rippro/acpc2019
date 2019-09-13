@@ -75,7 +75,7 @@ int main(){
     dfs_path(s,-1);
     rep(i,n)if(path[i])dfs(i,-1);
     for(auto x: ma){
-        cout << x.first.first << " " << x.first.second << " " << x.second << endl;
+        //cout << x.first.first << " " << x.first.second << " " << x.second << endl;
         if(x.second <= 0){
             cout << "No" << endl;
             return 0;
