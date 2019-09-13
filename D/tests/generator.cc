@@ -153,7 +153,22 @@ void case_55_star(){
         output(N, T, S, E, "55_star", k);
     }
 }
-
+void challenge00(){
+  int N=MAX_N,T=MIN_T;
+  int S=1,E=N,i;
+  for(i=0;i<N-1;i++){
+    if(rnd.next(0,1)){
+      vector<int> in{i+1,i+2,MAX_T};
+      edge.push_back(in);
+    }
+    else{
+      vector<int> in{i+2,i+1,MAX_T};
+      edge.push_back(in);
+    }
+  }
+  //make_shaffle(N-1);
+  output(N,T,S,E,"60_challenge",0);    
+}
 
 int main(){
     // 乱数のシードを設定
@@ -166,5 +181,6 @@ int main(){
     case_53_max();
     case_54_path();
     case_55_star();
+    challenge00();
     return 0;
 }
