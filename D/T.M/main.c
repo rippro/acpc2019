@@ -5,7 +5,7 @@ int R=1,C=1,H[2000010],N[2000010];
 int hyouka(int a,int b){
   if(C<b)return 1;
   if(C<a||b==0)return 0;
-  return N[H[a]]>N[H[b]]?1:0;
+  return N[H[a]]<N[H[b]]?1:0;
 }
 //挿入関数
 void hin(int a){
