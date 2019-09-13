@@ -22,10 +22,10 @@ void output(int N, int T, int S, int E, const string &prefix, int num){
     edge.clear();
 }
 
-void make_graph(int N){
+void make_graph(int N, int max_t = MAX_T){
     for (int i = 1; i < N; i++) {
         int initial, terminal, cost;
-        initial = i + 1, terminal = rnd.next(1, i), cost = rnd.next(MIN_T, MAX_T);
+        initial = i + 1, terminal = rnd.next(1, i), cost = rnd.next(MIN_T, max_t);
         int random = rnd.next(1, 100000);
         if (random % 2 == 0) swap(initial, terminal);
         vector<int> in{initial, terminal, cost};
@@ -40,7 +40,7 @@ void case_50_small(){
         int N = rnd.next(MIN_N, 10);
         int T = rnd.next(MIN_T, 100);
         int S = rnd.next(1, N), E = rnd.next(1, N);
-        make_graph(N);
+        make_graph(N, 100);
         output(N, T, S, E, "50_small", k);
     }
 }
