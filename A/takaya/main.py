@@ -1,3 +1,4 @@
+#!/Users/yataka/.pyenv/shims/ python3
 def main():
     X, T, S = map(int, input().split())
     N = int(input())
