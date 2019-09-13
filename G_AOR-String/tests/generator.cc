@@ -90,7 +90,7 @@ int main(){
       output(N,vs,file_name);
     }
     
-    rep(case_num,10){   //ランダムケース(large)
+    rep(case_num,5){   //ランダムケース(large)
       char file_name[100];
         int N = rnd.next(MIN_N,MAX_N);
 
@@ -103,7 +103,7 @@ int main(){
         output(N,vs,file_name);
     }
 
-    rep(case_num,100){   //ランダムケース(small)
+    rep(case_num,10){   //ランダムケース(small)
         char file_name[100];
         int N = rnd.next(MIN_N,8);
 
@@ -117,7 +117,7 @@ int main(){
     }
 
 
-    rep(case_num,20){   //文字列がA,O,Rのみからなるケース
+    rep(case_num,10){   //文字列がA,O,Rのみからなるケース
         char file_name[100];
         int N = rnd.next(MIN_N,MAX_N);
 
@@ -141,5 +141,5 @@ int main(){
         sprintf(file_name,"57-manyO-%02d.in",case_num);
         output(N,vs,file_name);
     }
-    challenge();
+    //challenge();
 }
