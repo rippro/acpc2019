@@ -4,7 +4,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>A</title>
+		<title>G</title>
 		<link rel="stylesheet" href="css/description.css" type="text/css" />
 	</head>
 
@@ -17,74 +17,76 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 		<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 		</script>
 
-		<h1>A: タイル貼り</h1>
+		<h1>G: AOR-String</h1>
 
 		<h2>問題</h2>
 		<p>
-			縦 $h$ , 横 $w$ の大きさの長方形の壁に, 縦 $a$ , 横 $b$ の大きさの長方形のタイルを出来るだけたくさん貼りたい.
+			$N$ 個の文字列 $S_i$ が与えられる.
 		</p>
 
 		<p>
-			タイルを貼る際は以下の条件を満たす必要がある.<br>
-			<ul>
-				<li>タイルを重ねてはいけない.</li>
-				<li>タイルを斜めに貼ってはいけない. すなわち, タイルのどの縁も, 壁のどの縁に対しても平行, または垂直である.</li>
-				<li>タイルの向きを変えない. すなわち, 縦横を入れ替えない.</li>
-			</ul>
+			$S_i$ を任意の順に繋げていって得られる文字に含まれる"$AOR$"の数の最大値を求めよ.
 		</p>
 
-		<p>
-			出来るだけ多くのタイルを貼ったとき, タイルに覆われていない部分の面積の総和を求めよ.
-		</p>
 
 
 		<h2>制約</h2>
 		<ul>
 			<li>入力値は全て整数である.</li>
-			<li>$1 \leq h,w,a,b \leq 100$</li>
+			<li>$1 \leq N \leq 10^5$</li>
+			<li>$1 \leq |S_i| \leq 20$</li>
 		</ul>
 		<h2>入力形式</h2>
 		<p> 入力は以下の形式で与えられる. </p>
 
 		<p>
-			$h\ w$<br>
-			$a\ b$<br>
+			$N$<br>
+			$S_1$<br>
+			…<br>
+			$S_N$<br>
 		</p>
 
 		<h2>出力</h2>
 		<p>
-			タイルに覆われていない部分の面積の総和を出力せよ. また, 末尾に改行も出力せよ.
+			$S_i$ を任意の順に繋げていって得られる文字に含まれる"$AOR$"の数の最大値を出力せよ. また, 末尾に改行も出力せよ.
 		</p>
 
 		<h2>サンプル</h2>
 		<h3>サンプル入力 1</h3>
 		<pre>
-5 8
-2 2
+2
+AORA
+OR
 			</pre>
 		<h3>サンプル出力 1</h3>
 		<pre>
-8
+2
 			</pre>
 
 		<h3>サンプル入力 2</h3>
 		<pre>
-11 10
-4 3
+5
+AB
+CA
+ORA
+XX
+AOR
 			</pre>
 		<h3>サンプル出力 2</h3>
 		<pre>
-38
+2
 			</pre>
 
 		<h3>サンプル入力 3</h3>
 		<pre>
-4 7
-7 4
+3
+RA
+O
+RA
 			</pre>
 		<h3>サンプル出力 3</h3>
 		<pre>
-28
+1
 			</pre>
 
 	</body>
