@@ -3,4 +3,6 @@
 #define MIN_N 2
 // for T
 #define MAX_T 1000000000
-#define MIN_T 1
+#define MIN_T 0
+#define MAX_W 1000000000
+#define MIN_W 1

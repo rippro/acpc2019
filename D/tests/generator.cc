@@ -22,10 +22,10 @@ void output(int N, int T, int S, int E, const string &prefix, int num){
     edge.clear();
 }
 
-void make_graph(int N, int max_t = MAX_T){
+void make_graph(int N, int max_w = MAX_W){
     for (int i = 1; i < N; i++) {
         int initial, terminal, cost;
-        initial = i + 1, terminal = rnd.next(1, i), cost = rnd.next(MIN_T, max_t);
+        initial = i + 1, terminal = rnd.next(1, i), cost = rnd.next(MIN_W, max_w);
         int random = rnd.next(1, 100000);
         if (random % 2 == 0) swap(initial, terminal);
         vector<int> in{initial, terminal, cost};
@@ -92,7 +92,7 @@ void case_54_path(){
         int T = rnd.next(MIN_T, MAX_T);
         int S = rnd.next(1, N), E = rnd.next(1, N);
         rep(i,N-1){
-            int cost = rnd.next(MIN_T, MAX_T);
+            int cost = rnd.next(MIN_W, MAX_W);
             vector<int> in{i+1, i+2, cost};
             edge.push_back(in);
         }
@@ -107,7 +107,7 @@ void case_55_star(){
         int T = rnd.next(MIN_T, MAX_T);
         int S, E;
         rep(i,N-1){
-            int cost = rnd.next(MIN_T, MAX_T);
+            int cost = rnd.next(MIN_W, MAX_W);
             vector<int> in{i+1, N, cost};
             edge.push_back(in);
         }
@@ -119,7 +119,7 @@ void case_55_star(){
         int T = rnd.next(MIN_T, MAX_T);
         int S, E = rnd.next(1, N);
         rep(i,N-1){
-            int cost = rnd.next(MIN_T, MAX_T);
+            int cost = rnd.next(MIN_W, MAX_W);
             vector<int> in{i+1, N, cost};
             edge.push_back(in);
         }
@@ -132,7 +132,7 @@ void case_55_star(){
         int T = rnd.next(MIN_T, MAX_T);
         int S = rnd.next(1, N), E;
         rep(i,N-1){
-            int cost = rnd.next(MIN_T, MAX_T);
+            int cost = rnd.next(MIN_W, MAX_W);
             vector<int> in{i+1, N, cost};
             edge.push_back(in);
         }
@@ -145,7 +145,7 @@ void case_55_star(){
         int T = rnd.next(MIN_T, MAX_T);
         int S = rnd.next(1, N), E = rnd.next(1, N);
         rep(i,N-1){
-            int cost = rnd.next(MIN_T, MAX_T);
+            int cost = rnd.next(MIN_W, MAX_W);
             vector<int> in{i+1, N, cost};
             edge.push_back(in);
         }
@@ -158,16 +158,16 @@ void challenge00(){
   int S=1,E=N,i;
   for(i=0;i<N-1;i++){
     if(rnd.next(0,1)){
-      vector<int> in{i+1,i+2,MAX_T};
+      vector<int> in{i+1,i+2,MAX_W};
       edge.push_back(in);
     }
     else{
-      vector<int> in{i+2,i+1,MAX_T};
+      vector<int> in{i+2,i+1,MAX_W};
       edge.push_back(in);
     }
   }
   //make_shaffle(N-1);
-  output(N,T,S,E,"60_challenge",0);    
+  output(N,T,S,E,"60_challenge",0);
 }
 
 int main(){

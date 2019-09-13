@@ -33,7 +33,7 @@ int main(){
 		inf.readSpace();
 		int b = inf.readInt(1, N);
 		inf.readSpace();
-		int n = inf.readInt(MIN_T, MAX_T);
+		int n = inf.readInt(MIN_W, MAX_W);
 		inf.readEoln();
 
 		a--; b--;
