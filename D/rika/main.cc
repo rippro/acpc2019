@@ -33,9 +33,10 @@ void dfs_path(int now, int par){
     for(auto ne: G[now]){
         if(ne == par)continue;
         dfs_path(ne,now);
+        dec(now,ne,1);
         if(path[ne]){
+            if(now == s)dec(now,ne,-1);
             path[now] = true;
-            if(now != s)dec(now,ne,1);
         }
     }
 }
@@ -74,7 +75,7 @@ int main(){
     dfs_path(s,-1);
     rep(i,n)if(path[i])dfs(i,-1);
     for(auto x: ma){
-        //cout << x.first.first << " " << x.first.second << " " << x.second << endl;
+        cout << x.first.first << " " << x.first.second << " " << x.second << endl;
         if(x.second <= 0){
             cout << "No" << endl;
             return 0;
