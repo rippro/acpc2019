@@ -35,7 +35,6 @@ void dfs_path(int now, int par){
         dfs_path(ne,now);
         dec(now,ne,1);
         if(path[ne]){
-            if(now == s)dec(now,ne,-1);
             path[now] = true;
         }
     }
@@ -72,6 +71,7 @@ int main(){
         if(a > b) swap(a,b);
         ma[pii(a,b)] = c;
     }
+    rep(i,G[s].size())dec(s,G[s][i],-1);
     dfs_path(s,-1);
     rep(i,n)if(path[i])dfs(i,-1);
     for(auto x: ma){
