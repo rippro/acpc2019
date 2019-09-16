@@ -27,7 +27,7 @@ int main(){
     scanf("%d %d %d %d",&r[i],&p[i],&w[i],&t[i]);
     hin(r[i]+t[i]);
   }
-  for(i=0;i<2010;i++)d[1][i]=-1e9;
+  for(i=0;i<4010;i++)d[1][i]=-1e9;
   while(C-1){
     m=hout()-1;
     for(i=N[m+1];i>=r[m];i--){
