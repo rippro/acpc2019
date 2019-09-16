@@ -1,110 +1,110 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title>E</title>
-		<link rel="stylesheet" href="css/description.css" type="text/css" />
-	</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>E</title>
+        <link rel="stylesheet" href="css/description.css" type="text/css" />
+    </head>
 
-	<body>
-		<script type="text/x-mathjax-config">
-			MathJax.Hub.Config({
+    <body>
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
 tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 });
-		</script>
-		<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-		</script>
+        </script>
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
 
-		<h1>E: モンスターバスター</h1>
+        <h1>E: モンスターバスター</h1>
 
-		<h2>問題</h2>
-		<p>
-			AORイカちゃんはモンスターバスターである.<br>
-			ある日, 道を歩いていると寝ているモンスターに出会った.
+        <h2>問題</h2>
+        <p>
+            AORイカちゃんはモンスターバスターである.<br>
+            ある日, 道を歩いていると寝ているモンスターに出会った.
 
-		</p>
+        </p>
 
-		<p>
-			闘争心が強いAORイカちゃんは,モンスターに寝起きの一撃をお見舞いすることに決めた.
-			しかし, 現在のAORイカちゃんの攻撃力は $0$ であり, このままではまともな攻撃ができない.
-		</p>
+        <p>
+            闘争心が強いAORイカちゃんは,モンスターに寝起きの一撃をお見舞いすることに決めた.
+            しかし, 現在のAORイカちゃんの攻撃力は $0$ であり, このままではまともな攻撃ができない.
+        </p>
 
-		<p>
-			モンスターバスターの精進をしているAORイカちゃんは, 実は師匠から特殊な笛を託されていた.
-			この笛で特定の曲を吹くと一定時間攻撃力が上がるのである.
+        <p>
+            モンスターバスターの精進をしているAORイカちゃんは, 実は師匠から特殊な笛を託されていた.
+            この笛で特定の曲を吹くと一定時間攻撃力が上がるのである.
 
-		</p>
+        </p>
 
-		<p>
-			修行を積んだAORイカちゃんは $N$ 個の曲を吹くことができる.
-			$i$ 番目の曲は演奏に $R_i$ 秒かかり, 演奏終了後に攻撃力が $A_i$ だけ上昇する.
-			演奏終了から $T_i$ 秒後にこの演奏の効果は切れ, 演奏前の攻撃力に戻ってしまう.
-		</p>
-
-
-		<p>
-			また, AORイカちゃんは重ね演奏をすることができる.
-			演奏の効果時間中に同じ曲を演奏し終えると攻撃力が $A_i$ ではなく $W_i$ 上昇する.
-			重ね演奏は何回でもできるが効果時間は延長しない. そのため現在効果中の $i$ 番目の曲の最初にかけた効果が切れると重ね演奏の効果もすべて切れる.
-		</p>
+        <p>
+            修行を積んだAORイカちゃんは $N$ 個の曲を吹くことができる.
+            $i$ 番目の曲は演奏に $R_i$ 秒かかり, 演奏終了後に攻撃力が $A_i$ だけ上昇する.
+            演奏終了から $T_i$ 秒後にこの演奏の効果は切れ, 演奏前の攻撃力に戻ってしまう.
+        </p>
 
 
-		<p>
-			AORイカちゃんの攻撃力の最大値を出力せよ.
-			なお, いくら演奏してもモンスターは起きないし, AORイカちゃんは $0.5$ 秒で攻撃できる.
-		</p>
+        <p>
+            また, AORイカちゃんは重ね演奏をすることができる.
+            演奏の効果時間中に同じ曲を演奏し終えると攻撃力が $A_i$ ではなく $W_i$ 上昇する.
+            重ね演奏は何回でもできるが効果時間は延長しない. そのため現在効果中の $i$ 番目の曲の最初にかけた効果が切れると重ね演奏の効果もすべて切れる.
+        </p>
 
-		<h2>制約</h2>
-		<ul>
-			<li>入力値は全て整数である.</li>
-			<li>$1 \leq N \leq 2000$</li>
-			<li>$-2000 \leq A_i, W_i \leq 2000$</li>
-			<li>$1 \leq R_i , T_i \leq 2000$</li>
-		</ul>
-		<h2>入力形式</h2>
-		<p> 入力は以下の形式で与えられる. </p>
 
-		<p>
-			$N$<br>
-			$R_1\ A_1\ W_1\ T_1$<br>
-			$\vdots$<br>
-			$R_N\ A_N\ W_N\ T_N$<br>
-		</p>
+        <p>
+            AORイカちゃんの攻撃力の最大値を出力せよ.
+            なお, いくら演奏してもモンスターは起きないし, AORイカちゃんは $0.5$ 秒で攻撃できる.
+        </p>
 
-		<h2>出力</h2>
-		<p>
-			AORイカちゃんの攻撃力の最大値を出力せよ. また, 末尾に改行も出力せよ.
-		</p>
+        <h2>制約</h2>
+        <ul>
+            <li>入力値は全て整数である.</li>
+            <li>$1 \leq N \leq 2000$</li>
+            <li>$-2000 \leq A_i, W_i \leq 2000$</li>
+            <li>$1 \leq R_i , T_i \leq 2000$</li>
+        </ul>
+        <h2>入力形式</h2>
+        <p> 入力は以下の形式で与えられる. </p>
 
-		<h2>サンプル</h2>
-		<h3>サンプル入力 1</h3>
-		<pre>
+        <p>
+            $N$<br>
+            $R_1\ A_1\ W_1\ T_1$<br>
+            $\vdots$<br>
+            $R_N\ A_N\ W_N\ T_N$<br>
+        </p>
+
+        <h2>出力</h2>
+        <p>
+            AORイカちゃんの攻撃力の最大値を出力せよ. また, 末尾に改行も出力せよ.
+        </p>
+
+        <h2>サンプル</h2>
+        <h3>サンプル入力 1</h3>
+        <pre>
 2
 5 10 5 5
-4 4 2 1
-			</pre>
-		<h3>サンプル出力 1</h3>
-		<pre>
+4 4 2 2
+            </pre>
+        <h3>サンプル出力 1</h3>
+        <pre>
 14
-			</pre>
+            </pre>
 
-		<img src="./img/sample1.png" alt="サンプル1" />
+        <img src="./img/sample1.png" alt="サンプル1" />
 
-		<h3>サンプル入力 2</h3>
-		<pre>
+        <h3>サンプル入力 2</h3>
+        <pre>
 2
 5 10 5 11
 8 8 2 1
-			</pre>
-		<h3>サンプル出力 2</h3>
-		<pre>
+            </pre>
+        <h3>サンプル出力 2</h3>
+        <pre>
 20
-			</pre>
+            </pre>
 
-		<img src="./img/sample2.png" alt="サンプル2" />
+        <img src="./img/sample2.png" alt="サンプル2" />
 
 
-	</body>
+    </body>
 
 </html>
