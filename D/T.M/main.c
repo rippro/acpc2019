@@ -55,6 +55,11 @@ int main(){
   int n,m,i,a,b,c;
   scanf("%d %d %d %d",&n,&m,&S,&T);
   for(i=0;i<n;i++)ta[i+1]=-1;
+  if(m==0){
+    for(i=0;i<n-1;i++)scanf("%*d %*d %*d");
+    printf("Yes\n");
+    return 0;
+  }
   for(i=0;i<n-1;i++){
     scanf("%d %d %d",&a,&b,&c);
     nt[i    ]=ta[to[i+n-1]=a];
